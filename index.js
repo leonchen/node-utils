@@ -1,7 +1,8 @@
 require("coffee-script/register")
 
 module.exports = {
-  config = require("./lib/config"),
-  mongo = require("./lib/mongo"),
-  redis = require("./lib/redis")
+  Config: require("./lib/config"),
+  Mongo: require("./lib/mongo"),
+  Redis: require("./lib/redis"),
+  ENV: require("./lib/env")
 }

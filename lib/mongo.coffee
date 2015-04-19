@@ -33,6 +33,4 @@ class Mongo
 
   toObjectID: mongo.helper.toObjectID
 
-  Mongo: Mongo
-
 module.exports = Mongo
