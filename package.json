@@ -17,10 +17,13 @@
   },
   "homepage": "https://github.com/leonchen/node-utils",
   "dependencies": {
+    "async": "^0.9.0",
     "coffee-script": "^1.9.1",
+    "gulp": "^3.8.11",
     "js-yaml": "^3.2.7",
     "mongodb": "^1.4.35",
     "mongoskin": "^1.4.13",
-    "redis": "^0.12.1"
+    "redis": "^0.12.1",
+    "gulp-watch": "^4.2.4"
   }
 }

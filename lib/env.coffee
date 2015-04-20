@@ -13,7 +13,7 @@ class Env
   constructor: (@data) ->
 
   load: (domain) ->
-    prefix = if domain then "#{domain}_" else ""
+    prefix = if domain then domain else ""
     @setEnv(@data, prefix)
 
   setEnv: (obj, prefix) ->
