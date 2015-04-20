@@ -1,4 +1,3 @@
-gulp = require 'gulp'
 watch = require 'gulp-watch'
 async = require 'async'
 {spawn} = require 'child_process'
@@ -12,29 +11,30 @@ module.exports = helper =
     watch watchDirs, ->
       clearTimeout restartTimeout if restartTimeout
       restartTimeout = setTimeout ->
-        main.startServer(cmd)
+        helper.startServer(cmd)
       , 1000
 
+    helper.startServer(cmd)
+
   startServer: (cmd) ->
-    if pids.length > 0
-      async.each pids, (pid, cb) ->
-        main.kill pid, cb
+    running = Object.keys(pids)
+    if running.length > 0
+      async.each running, (pid, cb) ->
+        helper.kill pid, cb
       , (err) ->
         if err
           console.warn err
           process.exit(1)
-          return
+        else
+          helper.startServer(cmd)
+    else
+      console.log "starting server"
+      args = cmd.split /\s+/
+      server = spawn args[0], args[1..]
+      pids[server.pid] = true
 
-        main.startServer(cmd)
-      return
-
-    console.log "starting server"
-    args = cmd.split /\s+/
-    server = spawn args[0], args[1..]
-    pids[server.pid] = true
-
-    server.stdout.on "data", (data) -> console.log data.toString().trim()
-    server.stderr.on "data", (data) -> console.warn data.toString().trim()
+      server.stdout.on "data", (data) -> console.log data.toString().trim()
+      server.stderr.on "data", (data) -> console.warn data.toString().trim()
 
   kill: (pid, cb) ->
     console.log "killing #{pid}"
