@@ -11,7 +11,7 @@ class Config
     doc = main.fromJSONString(data)
     return new Config(doc)
 
-  @fromYaml: (yaml) ->
+  @fromYAMl: (yaml) ->
     doc = yaml.safeLoad yaml
     return new Config(doc)
 

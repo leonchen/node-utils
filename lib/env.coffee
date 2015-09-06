@@ -6,7 +6,7 @@ class Env
     new Env(JSON.parse(json))
 
 
-  @fromYamlFile: (yamlFile) ->
+  @fromYAMLFile: (yamlFile) ->
     yaml = fs.readFileSync yamlFile
     new Env(yaml.safeLoad yaml)
 
